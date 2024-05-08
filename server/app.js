@@ -71,6 +71,9 @@ io.on('connection', (socket) => {
 import beastsDBRouter from './routers/beastsDBRouter.js';
 app.use(beastsDBRouter);
 
+import quizDBRouter from './routers/quizDBRouter.js';
+app.use(quizDBRouter);
+
 import authFirebaseRouter from "./routers/authFirebaseRouter.js";
 app.use(authFirebaseRouter);
 

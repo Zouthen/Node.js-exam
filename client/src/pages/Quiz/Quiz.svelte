@@ -19,6 +19,24 @@
     }
     fetchQuestions();
 
+    async function submitScore() {
+    //const email = localStorage.getItem('email');
+    const response = await fetch('/api/quizScores', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        mail : localStorage.getItem('userEmail'),
+        correctAnswers: score
+      })
+    });
+
+    if (response.ok) {
+      console.log('Quiz score saved or updated successfully');
+    } else {
+      console.error('Failed to save or update quiz score');
+    }
+  }
+
     function submitAnswer() {
         if (selectedAnswer === questions[currentQuestionIndex].correctAnswer) {
             score++;
@@ -29,8 +47,16 @@
             selectedAnswer = null;
         } else {
             alert(`Quiz completed! Your score: ${score}/${questions.length}`);
-            localStorage.setItem('quizScore', score.toString());
-            localStorage.setItem('quizlength', questions.length.toString());
+            //localStorage.setItem('quizScore', score.toString());
+            //localStorage.setItem('quizlength', questions.length.toString());
+
+            submitScore();
+            
+
+
+            
+
+
 
         }
     }
