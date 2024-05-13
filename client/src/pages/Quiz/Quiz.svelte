@@ -20,7 +20,6 @@
     fetchQuestions();
 
     async function submitScore() {
-    //const email = localStorage.getItem('email');
     const response = await fetch('/api/quizScores', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -47,16 +46,8 @@
             selectedAnswer = null;
         } else {
             alert(`Quiz completed! Your score: ${score}/${questions.length}`);
-            //localStorage.setItem('quizScore', score.toString());
-            //localStorage.setItem('quizlength', questions.length.toString());
 
             submitScore();
-            
-
-
-            
-
-
 
         }
     }

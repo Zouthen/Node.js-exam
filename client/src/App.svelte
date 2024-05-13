@@ -10,6 +10,7 @@
   import FantasticBeasts from "./pages/FantasticBeasts/FantasticBeasts.svelte";
   import Quiz from "./pages/Quiz/Quiz.svelte";
   import ContactUs from "./pages/ContactUs/ContactUs.svelte";
+  import Shop from "./pages/Shop/Shop.svelte";
 
   import User from "./pages/User/User.svelte";
   import Login from "./pages/Login/Login.svelte";
@@ -55,7 +56,10 @@
     <span>|</span>
     <Link to="/quiz">Quiz</Link>
     <span>|</span>
+    <Link to="/shop">Shop</Link>
+    <span>|</span>
     <Link to="/contactus">Contact Us</Link>
+    
 
     {#if !$user}
       <span>|</span>
@@ -76,6 +80,7 @@
     <Route path="/" component={Home}></Route>
     <Route path="/fantasticbeasts"><FantasticBeasts /></Route>
     <Route path="/quiz"><Quiz /></Route>
+    <Route path="/shop"><Shop /></Route>
     <Route path="/contactus"><ContactUs /></Route>
     <Route path="/login"><Login /></Route>
     <Route path="/signup"><Signup /></Route>

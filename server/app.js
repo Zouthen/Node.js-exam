@@ -83,6 +83,9 @@ app.use(contactRouter);
 import quizRouter from "./routers/quizRouter.js";
 app.use(quizRouter);
 
+import shopRouter from "./routers/shopRouter.js";
+app.use(shopRouter);
+
 // ============== Wildcard route ==============
 
 app.get('*', (req, res) => {
