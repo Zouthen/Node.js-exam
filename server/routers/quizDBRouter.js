@@ -44,19 +44,6 @@ router.get('/api/quizScores/:mail', async (req, res) => {
   });
 });
 
-/*
-router.post('/api/quizScores', (req, res) => {
-  const { name } = req.body;
-  db.run('INSERT INTO quizScores (mail) VALUES (?)', [mail], (err) => {
-    if (err) {
-      res.send({ message: 'Internal Server Error' });
-    } else {
-      res.send({ message: 'Document inserted successfully' });
-    }
-  });
-});
-*/
-
 async function findUserByEmail(mail) {
   return new Promise((resolve, reject) => {
     db.get('SELECT * FROM quizScores WHERE mail = ?', [mail], (err, row) => {

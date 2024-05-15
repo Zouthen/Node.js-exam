@@ -74,27 +74,6 @@ async function updateStock(id, newStock) {
     );
   });
 }
-/*
-// Route to handle bulk orders
-router.post('/api/shopwares/bulk-order', async (req, res) => {
-  const orders = req.body.orders;
-  //const db = new sqlite3.Database('examdb.sqlite');
-
-  db.serialize(() => {
-    const stmt = db.prepare('UPDATE shopwares SET stock = stock - ? WHERE id = ? AND stock >= ?');
-    for (let order of orders) {
-      stmt.run(order.quantity, order.id, order.quantity, function(err) {
-        if (err) {
-          res.status(500).json({ message: 'Failed to update stock', error: err.message });
-          return;
-        }
-      });
-    }
-    stmt.finalize();
-    res.json({ message: 'Stock updated successfully' });
-  });
-});
-*/
 
 router.post('/api/shopwares/bulk-order', async (req, res) => {
   const { orders, email } = req.body;
@@ -129,8 +108,6 @@ function sendConfirmationEmail(email, orderSummary) {
   transporter.sendMail(mailOptions, function (err, info) {
     if(err)
       console.log(err)
-    //else
-      //console.log(info);
   });
 }
 

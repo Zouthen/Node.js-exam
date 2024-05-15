@@ -1,5 +1,8 @@
 <script>
+  import toastr from "toastr";
+  import "toastr/build/toastr.css";
   import { onMount } from 'svelte';
+
   let items = [];
   let email = '';
 
@@ -16,7 +19,7 @@
   function validateOrder() {
     for (const item of items) {
       if (item.orderQuantity > item.stock) {
-        alert(`Cannot order ${item.orderQuantity} units of ${item.name}. Only ${item.stock} in stock.`);
+        toastr.warning(`Cannot order ${item.orderQuantity} units of ${item.name}. Only ${item.stock} in stock.`)
         return false;
       }
     }
@@ -25,7 +28,7 @@
 
   async function placeOrder() {
     if (!email || !validateEmail(email)) {
-      alert("Please enter a valid email address.");
+      toastr.info("Please enter a valid email address.");
       return;
     }
     if (!validateOrder()) {
@@ -36,7 +39,7 @@
                         .map(item => ({ id: item.id, name: item.name , quantity: item.orderQuantity }));
 
     if (orders.length === 0) {
-      alert("Please order at least one item.");
+      toastr.info("Please order at least one item.")
       return;
     }
     
@@ -52,10 +55,10 @@
       fetchItems();
       items.forEach(item => item.orderQuantity = 0);
       email = '';
-      alert("Your order has been placed. A confirmation email will be sent.");
+      toastr.success("Your order has been placed. A confirmation email will be sent.");
     } else {
       const error = await response.json();
-      alert(`Error: ${error.message}`);
+      toastr.error(`Error: ${error.message}`);
     }
   }
 
@@ -65,7 +68,7 @@
 <style>
   .table-container {
       width: 75%; 
-      margin: auto; /* Centers the table horizontally */
+      margin: auto;
     }
 
   table {
@@ -82,7 +85,7 @@
     background-color: #f4f4f4;
   }
   img {
-    width: 100px; /* Adjust the size as needed */
+    width: 100px;
     height: auto;
   }
   input[type='number'], input[type='email'] {

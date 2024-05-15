@@ -1,11 +1,7 @@
 <script>
-    // Variable to hold the quiz score data
     let userScore = null;
-  
-    // Retrieve the email (you can adjust this based on your app's needs)
     const userEmail = localStorage.getItem('userEmail');
   
-    // Fetch the quiz score by email
     async function fetchQuizScoreByEmail() {
       try {
         const response = await fetch(`/api/quizScores/${encodeURIComponent(userEmail)}`);
@@ -20,12 +16,9 @@
         console.error('Error fetching quiz score:', error);
       }
     }
-  
-    // Fetch quiz score on component load
     fetchQuizScoreByEmail();
   </script>
   
-  <!-- Display the user's quiz score -->
   {#if userScore}
     <div>
       <h2>User:</h2>

@@ -54,6 +54,7 @@ app.use(session({
 }));
 
 // ============== Sockets ==============
+
 io.on('connection', (socket) => {
     console.log('A user connected');
   

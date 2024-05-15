@@ -45,7 +45,7 @@ router.post('/auth/signup', async (req, res) => {
   console.log("signup");
   try {
     if (!req.body) {
-      return res.status(400).send({ data: "Request body is missing" });
+      return res.send({ data: "Request body is missing" });
     }
 
     const { email, password } = req.body;
@@ -82,7 +82,6 @@ function sendConfirmationEmail(email) {
       text: `You have successfully signed up for my page!`,
       html: `<b>You have successfully signed up for my page!</b>`,
     });
-    //res.send({ data: 'Email sent successfully' });
   } catch (error) {
     console.error('Error sending email:', error);
   }

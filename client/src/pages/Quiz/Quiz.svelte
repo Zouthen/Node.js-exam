@@ -1,4 +1,6 @@
 <script>
+    import toastr from "toastr";
+
     let questions = [];
     let currentQuestionIndex = 0;
     let score = 0;
@@ -45,7 +47,13 @@
             currentQuestionIndex++;
             selectedAnswer = null;
         } else {
-            alert(`Quiz completed! Your score: ${score}/${questions.length}`);
+            if (score < questions.length / 2) {
+                toastr.warning(`Quiz completed! Your score: ${score}/${questions.length}`);
+            } else if (score < questions.length) {
+                toastr.success(`Quiz completed! Your score: ${score}/${questions.length}`);
+            } else {
+                toastr.info(`Quiz completed! Your score: ${score}/${questions.length}`);
+            }
 
             submitScore();
 
